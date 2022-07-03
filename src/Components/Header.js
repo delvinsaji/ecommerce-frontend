@@ -8,6 +8,7 @@ function Header() {
       <div className="header1">
         <h1>Shopee</h1>
         <input
+          className="search"
           type="text"
           value={search}
           onChange={(e) => {
@@ -17,8 +18,14 @@ function Header() {
         ></input>
       </div>
       <div className="header2">
-        <p>Cart</p>
-        <p>delvinsaji</p>
+        <div className="cart">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/872/872243.png"
+            width={20}
+          />
+          <p>Cart</p>
+        </div>
+        <p className="username">delvinsaji</p>
       </div>
     </div>
   );

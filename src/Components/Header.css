@@ -1,10 +1,12 @@
 .header {
-  background-color: black;
+  background-color: rgba(26, 26, 26, 0.97);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
   height: 60px;
+  width: 100%;
+  gap: 30px;
 }
 
 .header input {
@@ -23,10 +25,36 @@ p {
 .header1 {
   display: flex;
   gap: 60px;
+  align-items: center;
 }
 
 .header2 {
   display: flex;
   gap: 40px;
   padding-right: 30px;
+}
+
+.header2 p {
+  color: grey;
+}
+
+.header2 p:hover {
+  color: white;
+  transition: 0.5s;
+}
+.search {
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(155, 155, 155, 0.53);
+  color: white;
+}
+
+.search::placeholder {
+  color: white;
+  padding-left: 10px;
+}
+
+.cart {
+  display: flex;
+  gap: 5px;
 }
