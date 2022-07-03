@@ -5,7 +5,7 @@
   justify-content: space-between;
   padding: 10px;
   height: 60px;
-  width: 100%;
+
   gap: 30px;
 }
 
@@ -41,6 +41,7 @@ p {
 .header2 p:hover {
   color: white;
   transition: 0.5s;
+  cursor: pointer;
 }
 .search {
   border-radius: 10px;
