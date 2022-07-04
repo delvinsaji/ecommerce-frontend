@@ -1,23 +1,27 @@
 import React, { useEffect, useState } from "react";
-import "./Products.css";
+import "./Recommended.css";
 import axios from "axios";
 
-function Products() {
+function Recommended() {
   const [data, setData] = useState();
   const [page, setPage] = useState(1);
   useEffect(() => {
     axios
-      .get(`https://e1commerce.herokuapp.com/api/allproducts/${page}/`)
+      .get(
+        `https://e1commerce.herokuapp.com/api/recommended/delvinsaji/${page}`
+      )
       .then((Response) => {
         setData(Response.data);
+        console.log(Response.data);
       })
       .catch((error) => {
         alert(error.data);
       });
-  }, [page]);
+  }, []);
+
   return (
     <div>
-      <h2 className="products_heading">Products</h2>
+      <h2 className="products_heading">Recommended Products</h2>
       <div className="row 1">
         <div className="row_element">
           <img src={data ? data[0].image : ""} height={150} alt="Product" />
@@ -77,4 +81,4 @@ function Products() {
   );
 }
 
-export default Products;
+export default Recommended;
