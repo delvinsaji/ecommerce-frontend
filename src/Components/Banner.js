@@ -28,7 +28,7 @@ function Banner() {
       >
         {"<"}
       </p>
-      <img src={data ? data[count].image : ""} />
+      <img src={data ? data[count].image : ""} alt="Product Pic" />
       <div className="details">
         <h4>{data ? data[count].name : ""}</h4>
         <h6>Rs{data ? data[count].price : ""}</h6>

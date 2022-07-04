@@ -22,6 +22,7 @@ function Header() {
           <img
             src="https://cdn-icons-png.flaticon.com/512/872/872243.png"
             width={20}
+            alt="Cart icon"
           />
           <p>Cart</p>
         </div>

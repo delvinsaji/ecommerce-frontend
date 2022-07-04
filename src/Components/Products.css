@@ -1,0 +1,22 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  padding-top: 40px;
+}
+
+.row p {
+  font-size: 12px;
+}
+
+.paginator {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  gap: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
