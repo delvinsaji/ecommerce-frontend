@@ -24,6 +24,7 @@ function ProductPage() {
         alert(error.data);
       });
   }, [id]);
+
   console.log(data);
   return (
     <div>
@@ -56,15 +57,17 @@ function ProductPage() {
                     setQuantity(quantity - 1);
                   }
                 }}
+                className="sign"
               >
                 -
               </p>
-              <p>{quantity}</p>
+              <p className="quan">{quantity}</p>
               <p
                 onClick={() => {
                   setPrice((quantity + 1) * firstprice);
                   setQuantity(quantity + 1);
                 }}
+                className="sign"
               >
                 +
               </p>
@@ -75,6 +78,16 @@ function ProductPage() {
           </div>
         </div>
       </div>
+      <h6 className="Rev">Reviews</h6>
+      {data
+        ? data.product_reviews.map((obj) => (
+            <div className="review">
+              <p>{obj.user}</p>
+              <p>Rating: {obj.rating}</p>
+              <p>{obj.desc}</p>
+            </div>
+          ))
+        : ""}
     </div>
   );
 }

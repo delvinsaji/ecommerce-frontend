@@ -18,7 +18,7 @@ function Header() {
         ></input>
       </div>
       <div className="header2">
-        <div className="cart">
+        <div className="cart1">
           <img
             src="https://cdn-icons-png.flaticon.com/512/872/872243.png"
             width={20}

@@ -17,6 +17,8 @@
   align-items: flex-start;
   justify-content: center;
   gap: 20px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .namedesc {
@@ -29,6 +31,9 @@
   text-align: center;
 }
 
+.cart p {
+  padding: 15px 20px;
+}
 .operator {
   display: flex;
   align-items: center;
@@ -36,21 +41,41 @@
   gap: 2px;
 }
 
+.operator p {
+  padding: 5px 5px;
+}
+
+.sign {
+  background-color: rgb(109, 109, 109);
+  width: 20px;
+}
+
+.sign:hover {
+  background-color: rgb(158, 158, 158);
+  cursor: pointer;
+}
+
+.quan {
+  background-color: rgb(109, 109, 109);
+}
 .quantity {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 30px;
   border-top: 1px solid white;
   border-left: 1px solid white;
   border-right: 1px solid white;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
+
 .x {
   border-top: 1px solid white;
   border-left: 1px solid white;
   border-right: 1px solid white;
 }
 .image1 {
-  width: 150px;
+  width: auto;
   height: 300px;
   padding-right: 20px;
 }
@@ -73,14 +98,33 @@
   border: 1px solid white;
   padding: 10px 20px;
   cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .butto button:hover {
   background-color: black;
   color: white;
   border: 1px solid black;
+  transition: 0.1s;
 }
 
 .butto {
   border: 1px solid white;
+}
+
+.Rev {
+  padding-left: 20px;
+  font-size: 25px;
+  font-weight: normal;
+  margin-top: 10px;
+}
+
+.review {
+  padding-left: 20px;
+  border-bottom: 1px solid white;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding-bottom: 10px;
 }
