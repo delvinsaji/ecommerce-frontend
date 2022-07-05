@@ -1,0 +1,13 @@
+.goback:hover {
+  background-color: rgba(78, 78, 78, 0.265);
+  transition: 0.5s;
+}
+
+.goback {
+  text-align: center;
+  width: 80px;
+  position: relative;
+  padding: 15px;
+  margin-top: 30px;
+  margin-left: 30px;
+}
