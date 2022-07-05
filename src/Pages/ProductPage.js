@@ -36,16 +36,16 @@ function ProductPage() {
         GO BACK
       </p>
       <div className="details">
-        <img src={data ? data.image : ""} alt="Product" />
-        <div classname="namedesc">
-          <h5>{data ? data.name : ""}</h5>
-          <p>{data ? data.product_reviews.length : ""}</p>
+        <img className="image1" src={data ? data.image : ""} alt="Product" />
+        <div className="namedesc">
+          <h5 className="name">{data ? data.name : ""}</h5>
+          <p>{data ? data.product_reviews.length : ""} Reviews</p>
           <p>Price: {data ? data.price : ""}</p>
           <p>{data ? data.desciption : ""}</p>
         </div>
         <div className="cart">
-          <p>Price: {price ? price : ""}</p>
-          <p>Status: {data ? data.status : ""}</p>
+          <p className="x">Price: {price ? price : ""}</p>
+          <p className="x">Status: {data ? data.status : ""}</p>
           <div className="quantity">
             <p>Qty</p>
             <div className="operator">
@@ -70,7 +70,9 @@ function ProductPage() {
               </p>
             </div>
           </div>
-          <button>ADD TO CART</button>
+          <div className="butto">
+            <button>ADD TO CART</button>
+          </div>
         </div>
       </div>
     </div>
