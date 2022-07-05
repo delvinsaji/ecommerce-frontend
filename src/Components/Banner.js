@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./Banner.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Banner() {
+  const navigate = useNavigate();
   const [data, setData] = useState("");
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -28,10 +30,28 @@ function Banner() {
       >
         {"<"}
       </p>
-      <img src={data ? data[count].image : ""} alt="Product Pic" />
+      <img
+        onClick={() => {
+          navigate(`product/${data[0].id}/`);
+        }}
+        src={data ? data[count].image : ""}
+        alt="Product Pic"
+      />
       <div className="details">
-        <h4>{data ? data[count].name : ""}</h4>
-        <h6>Rs{data ? data[count].price : ""}</h6>
+        <h4
+          onClick={() => {
+            navigate(`product/${data[0].id}/`);
+          }}
+        >
+          {data ? data[count].name : ""}
+        </h4>
+        <h6
+          onClick={() => {
+            navigate(`product/${data[0].id}/`);
+          }}
+        >
+          Rs{data ? data[count].price : ""}
+        </h6>
       </div>
       <p
         className="mover"

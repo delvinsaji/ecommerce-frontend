@@ -17,7 +17,7 @@ function Recommended() {
       .catch((error) => {
         alert(error.data);
       });
-  }, []);
+  }, [page]);
 
   return (
     <div>
