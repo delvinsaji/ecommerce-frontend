@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ProductPage.css";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Star from "../Components/Star";
 
 function ProductPage() {
   const navigate = useNavigate();
@@ -10,6 +11,11 @@ function ProductPage() {
   const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(0);
   const [firstprice, setFirstprice] = useState(0);
+  const [value, setValue] = React.useState(1);
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
   useEffect(() => {
     axios
       .post(`https://e1commerce.herokuapp.com/api/product/${id}/`, {
@@ -24,7 +30,6 @@ function ProductPage() {
         alert(error.data);
       });
   }, [id]);
-
   console.log(data);
   return (
     <div>
@@ -82,12 +87,28 @@ function ProductPage() {
       {data
         ? data.product_reviews.map((obj) => (
             <div className="review">
-              <p>{obj.user}</p>
-              <p>Rating: {obj.rating}</p>
-              <p>{obj.desc}</p>
+              <p className="username">{obj.username.username}</p>
+              <Star value={Number(obj.rating)}></Star>
+              <p className="rde">{obj.desc}</p>
             </div>
           ))
         : ""}
+      <div className="addreview">
+        <h6 className="Rev add">WRITE A REVIEW</h6>
+        <div className="in">
+          <p>Rating</p>
+          <select className="select" value={value} onChange={handleChange}>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">3</option>
+          </select>
+          <p>Review</p>
+          <textarea className="textbox"></textarea>
+        </div>
+        <button>ADD REVIEW</button>
+      </div>
     </div>
   );
 }

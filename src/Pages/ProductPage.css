@@ -118,13 +118,68 @@
   font-size: 25px;
   font-weight: normal;
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 .review {
-  padding-left: 20px;
+  padding-left: 25px;
+  margin-left: 0px;
   border-bottom: 1px solid white;
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
   padding-bottom: 10px;
+}
+
+.username {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.822);
+}
+
+.rde {
+  font-size: 13px;
+  margin-top: 15px;
+}
+
+.addreview {
+  padding-left: 20px;
+}
+.addreview button {
+  background-color: white;
+  margin-left: 15px;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+}
+
+.addreview button:hover {
+  background-color: black;
+  color: white;
+  transition: 0.5s;
+}
+.add {
+  padding-left: 5px;
+}
+
+.in {
+  padding-left: 15px;
+}
+
+.in p {
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+.textbox {
+  width: 400px;
+  height: 150px;
+  background-color: grey;
+  border-radius: 0px;
+  margin-bottom: 20px;
+}
+
+.select {
+  background-color: grey;
+  width: 405px;
+  height: 40px;
+  font-size: 20px;
 }
