@@ -1,0 +1,43 @@
+.login {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reg:hover {
+  border-bottom: 1px solid white;
+  cursor: pointer;
+}
+
+.regmain {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 100px;
+}
+
+.login h3 {
+  font-size: 40px;
+}
+.info p {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.info input {
+  margin-bottom: 20px;
+  width: 90%;
+  height: 40px;
+}
+
+.logb {
+  color: black;
+  background-color: white;
+  padding: 10px 30px;
+  margin-bottom: 15px;
+}
+
+.logb:hover {
+  color: white;
+  background-color: black;
+  transition: 0.25s;
+}

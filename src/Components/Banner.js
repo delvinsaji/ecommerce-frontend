@@ -8,16 +8,19 @@ function Banner() {
   const [data, setData] = useState("");
   const [count, setCount] = useState(0);
   useEffect(() => {
-    axios
-      .get("https://e1commerce.herokuapp.com/api/topfive/")
-      .then((Response) => {
-        setData(Response.data);
-      })
-      .catch((error) => {
-        alert(error.data);
-      });
+    async function fetchData() {
+      await axios
+        .get("https://e1commerce.herokuapp.com/api/topfive/")
+        .then((Response) => {
+          setData(Response.data);
+        })
+        .catch((error) => {
+          alert(error.data);
+        });
+    }
+    fetchData();
   }, []);
-  console.log(data);
+
   return (
     <div className="banner">
       <p
