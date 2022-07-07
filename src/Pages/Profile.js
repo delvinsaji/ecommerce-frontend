@@ -5,17 +5,34 @@ import { useNavigate, Outlet } from "react-router-dom";
 function Profile() {
   const navigate = useNavigate();
 
-  function nav(stri) {
-    navigate(stri);
-  }
-
   return (
     <div className="profile">
       <h3>MY ACCOUNT</h3>
       <div className="sections">
-        <p onClick={nav("personal")}>Personal Details</p>
-        <p onClick={nav("address")}> My Address</p>
-        <p onClick={nav("myproducts")}> My Products</p>
+        <p
+          className="y"
+          onClick={() => {
+            navigate("personal");
+          }}
+        >
+          Personal Details
+        </p>
+        <p
+          className="y"
+          onClick={() => {
+            navigate("address");
+          }}
+        >
+          My Address
+        </p>
+        <p
+          className="y"
+          onClick={() => {
+            navigate("myproducts");
+          }}
+        >
+          My Products
+        </p>
       </div>
       <div className="ma">
         <Outlet></Outlet>
