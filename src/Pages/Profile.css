@@ -1,15 +1,33 @@
 .sections {
   display: grid;
-  grid-template-columns: 100px;
+  grid-template-columns: 250px;
   grid-template-rows: 50px 50px 50px;
   padding-left: 20px;
-}
-
-.profile h3 {
-  font-size: 30px;
-  padding-left: 20px;
+  width: 250px;
+  height: 100%;
 }
 
 .y {
+  width: 100%;
+  padding-top: 15px;
+  padding-left: 5px;
+}
+
+.y:hover {
   cursor: pointer;
+  background-color: rgba(128, 128, 128, 0.491);
+  transition: 0.1s;
+}
+
+.acc {
+  font-size: 30px;
+  margin-bottom: 10px;
+  height: 50px;
+  padding-left: 20px;
+}
+
+.profile {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
