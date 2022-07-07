@@ -1,21 +1,21 @@
 import React from "react";
 import "./Profile.css";
-import { Link, Outlet } from "react-router-dom";
+import { useNavigate, Outlet } from "react-router-dom";
 
 function Profile() {
+  const navigate = useNavigate();
+
+  function nav(stri) {
+    navigate(stri);
+  }
+
   return (
-    <div>
+    <div className="profile">
       <h3>MY ACCOUNT</h3>
       <div className="sections">
-        <Link className="li" to="personal">
-          Personal Details
-        </Link>
-        <Link className="li" to="address">
-          My Address
-        </Link>
-        <Link className="li" to="myproducts">
-          My Products
-        </Link>
+        <p onClick={nav("personal")}>Personal Details</p>
+        <p onClick={nav("address")}> My Address</p>
+        <p onClick={nav("myproducts")}> My Products</p>
       </div>
       <div className="ma">
         <Outlet></Outlet>

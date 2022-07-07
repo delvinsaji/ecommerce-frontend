@@ -1,0 +1,11 @@
+.sections {
+  display: grid;
+  grid-template-columns: 100px;
+  grid-template-rows: 50px 50px 50px;
+  padding-left: 20px;
+}
+
+.profile h3 {
+  font-size: 30px;
+  padding-left: 20px;
+}
