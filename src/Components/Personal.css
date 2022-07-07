@@ -2,4 +2,46 @@
   margin: 0px;
   font-size: 25px;
   margin-left: 10px;
+  width: 100%;
+}
+
+.inf {
+  display: grid;
+  grid-template-columns: 400px 400px;
+  grid-template-rows: 75px 75px;
+}
+
+.inf input {
+  width: 350px;
+  height: 35px;
+  background-color: grey;
+  border: none;
+}
+
+.in p {
+  padding-top: 20px;
+}
+
+.change {
+  margin-top: 40px;
+  padding-left: 10px;
+  border-bottom: 1px solid white;
+  padding-bottom: 5px;
+}
+.change1 {
+  margin-top: 20px;
+  display: grid;
+  grid-template-rows: 30px 30px;
+  grid-template-columns: 150px 150px;
+  column-gap: 30px;
+  row-gap: 30px;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.change1 input {
+  width: 350px;
+  height: 35px;
+  background-color: grey;
+  border: none;
 }

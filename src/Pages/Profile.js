@@ -24,7 +24,7 @@ function Profile() {
               navigate("address");
             }}
           >
-            My Address
+            Address
           </p>
           <p
             className="y"
@@ -33,6 +33,14 @@ function Profile() {
             }}
           >
             My Products
+          </p>
+          <p
+            className="y"
+            onClick={() => {
+              navigate("orders");
+            }}
+          >
+            Orders
           </p>
         </div>
         <div className="ma">

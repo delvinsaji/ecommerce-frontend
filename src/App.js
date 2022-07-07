@@ -10,6 +10,7 @@ import Profile from "./Pages/Profile";
 import Personal from "./Components/Personal";
 import Address from "./Components/Address";
 import Myproducts from "./Components/Myproducts";
+import Orders from "./Components/Orders";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
             path="myproducts"
             element={<Myproducts></Myproducts>}
           ></Route>
+          <Route exact path="orders" element={<Orders></Orders>}></Route>
         </Route>
       </Routes>
     </div>
