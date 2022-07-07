@@ -1,0 +1,81 @@
+.address {
+  width: 350px;
+  padding-top: 20px;
+  padding-left: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.address p {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.ad {
+  padding-bottom: 20px;
+  padding-right: 10px;
+  cursor: pointer;
+}
+
+.ad:hover {
+  background-color: rgba(128, 128, 128, 0.459);
+}
+.addressmain {
+  display: grid;
+  grid-template-columns: 350px 350px;
+  align-items: center;
+  justify-content: center;
+  column-gap: 70px;
+}
+
+.removeaddress {
+  display: none;
+}
+
+.addaddress {
+  display: block;
+  border-top: 1px solid white;
+  margin-top: 20px;
+}
+
+.addaddress h6 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.addressinfo {
+  display: grid;
+  grid-template-columns: 350px 350px;
+  column-gap: 30px;
+}
+
+.addressinfo1 {
+  margin-top: 20px;
+}
+.addressinfo1 input {
+  width: 340px;
+  height: 35px;
+  background-color: grey;
+  border: none;
+  margin-top: 5px;
+}
+
+.addressinfo1 input::placeholder {
+  color: black;
+}
+
+.addressb {
+  background-color: white;
+  color: black;
+  margin-top: 20px;
+  padding: 10px 25px;
+  font-size: 18px;
+  margin-bottom: 50px;
+}
+
+.addressb:hover {
+  background-color: black;
+  color: white;
+  transition: 0.2s;
+}
