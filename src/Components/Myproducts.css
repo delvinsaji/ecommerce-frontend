@@ -1,0 +1,27 @@
+.item1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 90px;
+  margin-left: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.item1 p {
+  font-size: 25px;
+}
+
+.it {
+  margin-right: 70px;
+}
+
+.addproduct {
+  border-top: 1px solid white;
+  padding-left: 15px;
+}
+
+.addproduct h5 {
+  font-size: 20px;
+  margin-top: 20px;
+}

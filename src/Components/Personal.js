@@ -42,6 +42,7 @@ function Personal() {
           ></input>
         </div>
       </div>
+      <button className="up">UPDATE DETAILS</button>
       <p className="change">CHANGE PASSWORD</p>
       <div className="change1">
         <p>Old Password</p>
@@ -61,6 +62,7 @@ function Personal() {
           }}
         ></input>
       </div>
+      <button className="up">CHANGE PASSWORD</button>
     </div>
   );
 }

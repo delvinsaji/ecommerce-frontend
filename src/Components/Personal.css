@@ -45,3 +45,16 @@
   background-color: grey;
   border: none;
 }
+
+.up {
+  background-color: white;
+  margin-top: 40px;
+  margin-left: 15px;
+  padding: 10px 20px;
+}
+
+.up:hover {
+  background-color: black;
+  color: white;
+  transition: 0.1s;
+}
