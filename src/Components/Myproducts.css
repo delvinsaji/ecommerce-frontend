@@ -94,3 +94,6 @@
   color: white;
   transition: 0.1s;
 }
+.upd {
+  display: none;
+}
