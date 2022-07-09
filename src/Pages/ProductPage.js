@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./ProductPage.css";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Star from "../Components/Star";
+import { LoginContext } from "../context";
 
 function ProductPage() {
+  const { token } = useContext(LoginContext);
   const navigate = useNavigate();
   const { id } = useParams();
   const [data, setData] = useState();
@@ -30,7 +32,7 @@ function ProductPage() {
         alert(error.data);
       });
   }, [id]);
-  console.log(data);
+
   return (
     <div>
       <p
@@ -79,7 +81,25 @@ function ProductPage() {
             </div>
           </div>
           <div className="butto">
-            <button>ADD TO CART</button>
+            <button
+              onClick={() => {
+                if (token === "") {
+                  data["quantity"] = quantity;
+                  if (localStorage.getItem("cart") === null) {
+                    let cartobj = [data];
+                    localStorage.setItem("cart", JSON.stringify(cartobj));
+                  } else {
+                    let i = JSON.parse(localStorage.getItem("cart"));
+                    i.push(data);
+                    localStorage.setItem("cart", JSON.stringify(i));
+                  }
+                }
+                navigate("/cart");
+              }}
+            >
+              {" "}
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>
