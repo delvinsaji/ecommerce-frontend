@@ -10,7 +10,7 @@ function Productform(props) {
   const [status, setStatus] = useState();
 
   useEffect(() => {
-    if (props.details != "") {
+    if (props.details !== "") {
       setName(props.details[0]);
       setPrice(props.details[1]);
       setDesc(props.details[2]);
@@ -18,7 +18,7 @@ function Productform(props) {
       setStatus(props.details[4]);
       setCategory(props.details[5]);
     }
-  }, []);
+  }, [props.details]);
 
   return (
     <div className="addproduct">
