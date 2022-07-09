@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { LoginContext } from "../context";
 
 function Login() {
+  const { setToken } = useContext(LoginContext);
   const navigate = useNavigate();
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
@@ -29,7 +32,25 @@ function Login() {
           placeholder="Password"
         ></input>
       </div>
-      <button className="logb">LOGIN</button>
+      <button
+        onClick={() => {
+          axios
+            .post("https://e1commerce.herokuapp.com/api/token/", {
+              username: username,
+              password: password,
+            })
+            .then((Response) => {
+              setToken([username, Response.data.access]);
+              navigate("/");
+            })
+            .catch((error) => {
+              alert(error.data);
+            });
+        }}
+        className="logb"
+      >
+        LOGIN
+      </button>
       <p className="regmain">
         Do not have an account?{" "}
         <p
