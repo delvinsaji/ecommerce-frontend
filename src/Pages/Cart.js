@@ -19,8 +19,6 @@ function Cart() {
         <h3>SHOPPING CART</h3>
         {data
           ? data.map((obj) => {
-              toq = toquantity + obj.quantity;
-              top = toprice + obj.price * obj.quantity;
               return (
                 <div className="item">
                   <img
