@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Profile.css";
 import { useNavigate, Outlet } from "react-router-dom";
+import { LoginContext } from "../context";
 
 function Profile() {
+  const { setToken } = useContext(LoginContext);
   const navigate = useNavigate();
 
   return (
@@ -41,6 +43,15 @@ function Profile() {
             }}
           >
             Orders
+          </p>
+          <p
+            className="y"
+            onClick={() => {
+              setToken("");
+              navigate("/");
+            }}
+          >
+            Log Out
           </p>
         </div>
         <div className="ma">

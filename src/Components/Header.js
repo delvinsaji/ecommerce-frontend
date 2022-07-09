@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Header.css";
+import { LoginContext } from "../context";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const navigate = useNavigate();
+  const { token } = useContext(LoginContext);
   const [search, setSearch] = useState();
+  console.log(token);
   return (
     <div className="header">
       <div className="header1">
@@ -26,7 +31,25 @@ function Header() {
           />
           <p>Cart</p>
         </div>
-        <p className="username">delvinsaji</p>
+        {token === "" ? (
+          <p
+            onClick={() => {
+              navigate("/login");
+            }}
+            className="username"
+          >
+            Login
+          </p>
+        ) : (
+          <p
+            onClick={() => {
+              navigate("/profile");
+            }}
+            className="username"
+          >
+            {token[0]}
+          </p>
+        )}
       </div>
     </div>
   );

@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./Recommended.css";
 import axios from "axios";
+import { LoginContext } from "../context";
 
 function Recommended() {
   const [data, setData] = useState();
   const [page, setPage] = useState(1);
+  const { token } = useContext(LoginContext);
   useEffect(() => {
     axios
       .get(
-        `https://e1commerce.herokuapp.com/api/recommended/delvinsaji/${page}`
+        `https://e1commerce.herokuapp.com/api/recommended/delvinsaji/${token[0]}`
       )
       .then((Response) => {
         setData(Response.data);
-        console.log(Response.data);
       })
       .catch((error) => {
         alert(error.data);
       });
-  }, [page]);
+  }, [page, token]);
 
   return (
     <div>

@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../context";
+import axios from "axios";
 
 function Signup() {
+  const { setToken } = useContext(LoginContext);
   const navigate = useNavigate();
   const [username, setUsername] = useState();
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [age, setAge] = useState();
   return (
     <div className="login">
       <h3>SIGN UP</h3>
@@ -39,6 +43,15 @@ function Signup() {
           }}
           placeholder="E-mail"
         ></input>
+        <p>Age</p>
+        <input
+          type="text"
+          value={age}
+          onChange={(e) => {
+            setAge(e.target.value);
+          }}
+          placeholder="Age"
+        ></input>
         <p>Password</p>
         <input
           type="password"
@@ -49,7 +62,38 @@ function Signup() {
           placeholder="Password"
         ></input>
       </div>
-      <button className="logb">SIGN UP</button>
+      <button
+        onClick={() => {
+          axios
+            .post("https://e1commerce.herokuapp.com/api/createprofile/", {
+              username: username,
+              name: name,
+              password: password,
+              age: age,
+              email: email,
+            })
+            .then((Response) => {
+              axios
+                .post("https://e1commerce.herokuapp.com/api/token/", {
+                  username: username,
+                  password: password,
+                })
+                .then((Response) => {
+                  setToken([username, Response.data.access]);
+                  navigate("/");
+                })
+                .catch((error) => {
+                  alert(error.data);
+                });
+            })
+            .catch((error) => {
+              alert(error.data);
+            });
+        }}
+        className="logb"
+      >
+        SIGN UP
+      </button>
       <p className="regmain">
         Already have an account?{" "}
         <p
