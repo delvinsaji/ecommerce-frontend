@@ -32,7 +32,6 @@ function ProductPage() {
         alert(error.data);
       });
   }, [id]);
-
   return (
     <div>
       <p
@@ -93,6 +92,27 @@ function ProductPage() {
                     i.push(data);
                     localStorage.setItem("cart", JSON.stringify(i));
                   }
+                } else {
+                  axios
+                    .post(
+                      `https://e1commerce.herokuapp.com/api/addcart/`,
+                      {
+                        username: token[0],
+                        quantity: quantity,
+                        product: data.id,
+                      },
+                      {
+                        headers: {
+                          Authorization: `Bearer ${token[1]}`,
+                        },
+                      }
+                    )
+                    .then((Response) => {
+                      console.log(Response.data);
+                    })
+                    .catch((error) => {
+                      alert(error.data);
+                    });
                 }
                 navigate("/cart");
               }}

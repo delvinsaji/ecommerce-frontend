@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Main.css";
 import Banner from "../Components/Banner";
 import Products from "../Components/Products";
 import Recommended from "../Components/Recommended";
-
+import { LoginContext } from "../context";
 function Main() {
+  const { token } = useContext(LoginContext);
   return (
     <div>
       <Banner></Banner>
       <Products></Products>
-      <Recommended></Recommended>
+      {token === "" ? "" : <Recommended></Recommended>}
     </div>
   );
 }

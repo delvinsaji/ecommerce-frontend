@@ -36,7 +36,13 @@ function Header() {
             width={20}
             alt="Cart icon"
           />
-          <p>Cart</p>
+          <p
+            onClick={() => {
+              navigate("/cart");
+            }}
+          >
+            Cart
+          </p>
         </div>
         {token === "" ? (
           <p
