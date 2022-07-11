@@ -1,0 +1,24 @@
+.searchmain {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20%;
+  align-items: flex-start;
+  justify-content: center;
+  column-gap: 50px;
+  row-gap: 50px;
+  text-align: center;
+}
+
+.row_element {
+  cursor: pointer;
+}
+
+.searchhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sort {
+  display: flex;
+  gap: 10px;
+  margin-right: 30px;
+}
