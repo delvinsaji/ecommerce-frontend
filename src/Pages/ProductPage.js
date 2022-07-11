@@ -178,7 +178,7 @@ function ProductPage() {
             if (token !== "") {
               axios
                 .post(
-                  "http://e1commerce.herokuapp.com/api/addreview/",
+                  "https://e1commerce.herokuapp.com/api/addreview/",
                   {
                     username: token[0],
                     id: data.id,
