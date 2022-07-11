@@ -11,6 +11,7 @@ import Personal from "./Components/Personal";
 import Address from "./Components/Address";
 import Myproducts from "./Components/Myproducts";
 import Orders from "./Components/Orders";
+import Search from "./Pages/Search";
 import { LoginContext } from "./context";
 import { useState } from "react";
 
@@ -44,6 +45,7 @@ function App() {
             ></Route>
             <Route exact path="orders" element={<Orders></Orders>}></Route>
           </Route>
+          <Route exact path="search/:id" element={<Search></Search>}></Route>
         </Routes>
       </div>
     </LoginContext.Provider>

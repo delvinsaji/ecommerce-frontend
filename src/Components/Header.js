@@ -26,6 +26,11 @@ function Header() {
           onChange={(e) => {
             setSearch(e.target.value);
           }}
+          onKeyPress={(event) => {
+            if (event.key === "Enter") {
+              navigate(`search/${search}/`);
+            }
+          }}
           placeholder="Search"
         ></input>
       </div>

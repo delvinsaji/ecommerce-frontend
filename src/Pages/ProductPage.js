@@ -52,7 +52,9 @@ function ProductPage() {
           <h5 className="name">{data ? data.name : ""}</h5>
           <p>
             {data ? data.product_reviews.length : ""}{" "}
-            {data.product_reviews.length === 1 ? "Review" : "Reviews"}
+            {(data ? data.product_reviews.length === 1 : false)
+              ? "Review"
+              : "Reviews"}
           </p>
           <p>Price: {data ? data.price : ""}</p>
           <p>{data ? data.desciption : ""}</p>
