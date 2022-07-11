@@ -13,7 +13,9 @@ function ProductPage() {
   const [quantity, setQuantity] = useState(1);
   const [price, setPrice] = useState(0);
   const [firstprice, setFirstprice] = useState(0);
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = useState(1);
+  const [desc, setDesc] = useState();
+  const [log, setLog] = useState("bla1");
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -32,9 +34,11 @@ function ProductPage() {
         alert(error.data);
       });
   }, [id]);
+
   return (
     <div>
       <p
+        style={{ cursor: "pointer" }}
         onClick={() => {
           navigate("/");
         }}
@@ -46,7 +50,10 @@ function ProductPage() {
         <img className="image1" src={data ? data.image : ""} alt="Product" />
         <div className="namedesc">
           <h5 className="name">{data ? data.name : ""}</h5>
-          <p>{data ? data.product_reviews.length : ""} Reviews</p>
+          <p>
+            {data ? data.product_reviews.length : ""}{" "}
+            {data.product_reviews.length === 1 ? "Review" : "Reviews"}
+          </p>
           <p>Price: {data ? data.price : ""}</p>
           <p>{data ? data.desciption : ""}</p>
         </div>
@@ -145,9 +152,60 @@ function ProductPage() {
             <option value="5">3</option>
           </select>
           <p>Review</p>
-          <textarea className="textbox"></textarea>
+          <textarea
+            value={desc}
+            onChange={(e) => {
+              setDesc(e.target.value);
+            }}
+            className="textbox"
+          ></textarea>
         </div>
-        <button>ADD REVIEW</button>
+        <p className={log}>
+          Please{" "}
+          <p
+            className="reg"
+            onClick={() => {
+              navigate("/login");
+            }}
+          >
+            {" "}
+            Log in{" "}
+          </p>{" "}
+          to add a review
+        </p>
+        <button
+          onClick={() => {
+            if (token !== "") {
+              axios
+                .post(
+                  "http://e1commerce.herokuapp.com/api/addreview/",
+                  {
+                    username: token[0],
+                    id: data.id,
+                    rating: value,
+                    description: desc,
+                  },
+                  {
+                    headers: {
+                      Authorization: `Bearer ${token[1]}`,
+                    },
+                  }
+                )
+                .then((Response) => {
+                  if (Response.data === "Review already exists") {
+                    alert("Review for the user already exists for the product");
+                  }
+                })
+                .catch((error) => {
+                  alert(error.data);
+                });
+            } else {
+              setLog("bla2");
+            }
+          }}
+        >
+          ADD REVIEW
+        </button>
       </div>
     </div>
   );
