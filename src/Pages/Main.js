@@ -4,6 +4,7 @@ import Banner from "../Components/Banner";
 import Products from "../Components/Products";
 import Recommended from "../Components/Recommended";
 import { LoginContext } from "../context";
+
 function Main() {
   const { token } = useContext(LoginContext);
   return (

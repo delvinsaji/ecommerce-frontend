@@ -62,7 +62,7 @@ function Personal() {
           }}
         ></input>
       </div>
-      <button className="up">CHANGE PASSWORD</button>
+      <button className="up u">CHANGE PASSWORD</button>
     </div>
   );
 }
