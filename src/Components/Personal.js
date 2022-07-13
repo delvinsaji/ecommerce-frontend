@@ -1,12 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Personal.css";
+import axios from "axios";
+import { LoginContext } from "../context";
 
 function Personal() {
   const [username, setUsername] = useState();
   const [name, setName] = useState();
   const [email, setEmail] = useState();
+  const [age, setAge] = useState();
   const [oldp, setOldp] = useState();
   const [newp, setNewp] = useState();
+  const { token } = useContext(LoginContext);
+  useEffect(() => {
+    axios
+      .get(`https://e1commerce.herokuapp.com/api/getprofile/${token[0]}/`, {
+        headers: { Authorization: `Bearer ${token[1]}` },
+      })
+      .then((Response) => {
+        setName(Response.data.name);
+        setEmail(Response.data.email);
+        setAge(Response.data.age);
+      });
+  });
   return (
     <div className="personal">
       <h3 className="infohead">ACCOUNT INFORMATION</h3>
@@ -38,6 +53,16 @@ function Personal() {
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
+            }}
+          ></input>
+        </div>
+        <div className="in">
+          <p>Age</p>
+          <input
+            type="text"
+            value={age}
+            onChange={(e) => {
+              setAge(e.target.value);
             }}
           ></input>
         </div>
