@@ -12,6 +12,7 @@ import Address from "./Components/Address";
 import Myproducts from "./Components/Myproducts";
 import Orders from "./Components/Orders";
 import Search from "./Pages/Search";
+import Analytics from "./Components/Analytics";
 import { LoginContext } from "./context";
 import { useState } from "react";
 
@@ -44,6 +45,11 @@ function App() {
               element={<Myproducts></Myproducts>}
             ></Route>
             <Route exact path="orders" element={<Orders></Orders>}></Route>
+            <Route
+              exact
+              path="analytics"
+              element={<Analytics></Analytics>}
+            ></Route>
           </Route>
           <Route exact path="search/:id" element={<Search></Search>}></Route>
         </Routes>

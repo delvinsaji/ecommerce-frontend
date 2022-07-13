@@ -47,6 +47,14 @@ function Profile() {
           <p
             className="y"
             onClick={() => {
+              navigate("analytics");
+            }}
+          >
+            Analytics
+          </p>
+          <p
+            className="y"
+            onClick={() => {
               setToken("");
               navigate("/");
             }}
