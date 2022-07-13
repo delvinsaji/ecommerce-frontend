@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Products.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Visited from "../Functions/Visited";
 
 function Products() {
   const navigate = useNavigate();
