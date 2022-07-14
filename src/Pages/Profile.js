@@ -1,12 +1,25 @@
-import React, { useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "./Profile.css";
 import { useNavigate, Outlet } from "react-router-dom";
 import { LoginContext } from "../context";
+import axios from "axios";
 
 function Profile() {
-  const { setToken } = useContext(LoginContext);
+  const { setToken, token } = useContext(LoginContext);
   const navigate = useNavigate();
-
+  const [data, setData] = useState();
+  useEffect(() => {
+    axios
+      .get(`https://e1commerce.herokuapp.com/api/getprofile/${token[0]}/`, {
+        headers: { Authorization: `Bearer ${token[1]}` },
+      })
+      .then((Response) => {
+        setData(Response.data);
+      })
+      .catch((error) => {
+        alert(error.data);
+      });
+  });
   return (
     <div>
       <h3 className="acc">MY ACCOUNT</h3>
@@ -15,7 +28,14 @@ function Profile() {
           <p
             className="y"
             onClick={() => {
-              navigate("personal");
+              navigate("personal", {
+                state: {
+                  username: data.username,
+                  name: data.name,
+                  age: data.age,
+                  email: data.email,
+                },
+              });
             }}
           >
             Personal Details
@@ -23,7 +43,7 @@ function Profile() {
           <p
             className="y"
             onClick={() => {
-              navigate("address");
+              navigate("address", { state: { address: data.address } });
             }}
           >
             Address
@@ -31,7 +51,7 @@ function Profile() {
           <p
             className="y"
             onClick={() => {
-              navigate("myproducts");
+              navigate("myproducts", { state: { products: data.products } });
             }}
           >
             My Products
@@ -39,7 +59,7 @@ function Profile() {
           <p
             className="y"
             onClick={() => {
-              navigate("orders");
+              navigate("orders", { state: { orders: data.orders } });
             }}
           >
             Orders

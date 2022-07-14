@@ -1,27 +1,19 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./Personal.css";
-import axios from "axios";
 import { LoginContext } from "../context";
+import { useLocation } from "react-router-dom";
 
 function Personal() {
-  const [username, setUsername] = useState();
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [age, setAge] = useState();
+  const { state } = useLocation();
+  const { username, name, email, age } = state;
+  const [username1, setUsername] = useState(username);
+  const [name1, setName] = useState(name);
+  const [email1, setEmail] = useState(email);
+  const [age1, setAge] = useState(age);
   const [oldp, setOldp] = useState();
   const [newp, setNewp] = useState();
   const { token } = useContext(LoginContext);
-  useEffect(() => {
-    axios
-      .get(`https://e1commerce.herokuapp.com/api/getprofile/${token[0]}/`, {
-        headers: { Authorization: `Bearer ${token[1]}` },
-      })
-      .then((Response) => {
-        setName(Response.data.name);
-        setEmail(Response.data.email);
-        setAge(Response.data.age);
-      });
-  });
+
   return (
     <div className="personal">
       <h3 className="infohead">ACCOUNT INFORMATION</h3>
@@ -30,7 +22,7 @@ function Personal() {
           <p>Username</p>
           <input
             type="text"
-            value={username}
+            value={username1}
             onChange={(e) => {
               setUsername(e.target.value);
             }}
@@ -40,7 +32,7 @@ function Personal() {
           <p>Name</p>
           <input
             type="text"
-            value={name}
+            value={name1}
             onChange={(e) => {
               setName(e.target.value);
             }}
@@ -50,7 +42,7 @@ function Personal() {
           <p>E-mail</p>
           <input
             type="text"
-            value={email}
+            value={email1}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -60,7 +52,7 @@ function Personal() {
           <p>Age</p>
           <input
             type="text"
-            value={age}
+            value={age1}
             onChange={(e) => {
               setAge(e.target.value);
             }}
