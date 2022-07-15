@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import "./Personal.css";
 import { LoginContext } from "../context";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 function Personal() {
   const { state } = useLocation();
@@ -10,9 +11,9 @@ function Personal() {
   const [name1, setName] = useState(name);
   const [email1, setEmail] = useState(email);
   const [age1, setAge] = useState(age);
-  const [oldp, setOldp] = useState();
-  const [newp, setNewp] = useState();
-  const { token } = useContext(LoginContext);
+  const [oldp, setOldp] = useState("");
+  const [newp, setNewp] = useState("");
+  const { token, setToken } = useContext(LoginContext);
 
   return (
     <div className="personal">
@@ -59,7 +60,36 @@ function Personal() {
           ></input>
         </div>
       </div>
-      <button className="up">UPDATE DETAILS</button>
+      <button
+        className="up"
+        onClick={() => {
+          axios
+            .post(
+              `https://e1commerce.herokuapp.com/api/updateprofile/${token[0]}/`,
+              { username: username1, name: name1, age: age1, email: email1 },
+              {
+                headers: {
+                  Authorization: `Bearer ${token[1]}`,
+                },
+              }
+            )
+            .then((Response) => {
+              if (Response.data === "Successfully updated") {
+                token[0] = username1;
+                setToken(token);
+                console.log(token);
+                alert("Successfully Updated");
+              } else {
+                alert("Username already exists");
+              }
+            })
+            .catch((error) => {
+              alert(error.data);
+            });
+        }}
+      >
+        UPDATE DETAILS
+      </button>
       <p className="change">CHANGE PASSWORD</p>
       <div className="change1">
         <p>Old Password</p>
@@ -79,7 +109,30 @@ function Personal() {
           }}
         ></input>
       </div>
-      <button className="up u">CHANGE PASSWORD</button>
+      <button
+        className="up u"
+        onClick={() => {
+          axios
+            .post(
+              `https://e1commerce.herokuapp.com/api/updatepassword/${token[0]}/`,
+              { old_password: oldp, new_password: newp },
+              {
+                headers: {
+                  Authorization: `Bearer ${token[1]}`,
+                },
+              }
+            )
+            .then((Response) => {
+              if (Response.data === "The password entered is incorrect") {
+                alert("The password entered is incorrect");
+              } else {
+                alert("Password changed");
+              }
+            });
+        }}
+      >
+        CHANGE PASSWORD
+      </button>
     </div>
   );
 }
