@@ -1,29 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Address.css";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+import { LoginContext } from "../context";
 
 function Address() {
+  const { state } = useLocation();
+  const { address } = state;
   const [addcss, setAddcss] = useState("removeaddress");
   const [housename, setHousename] = useState();
   const [cityname, setCityname] = useState();
   const [statename, setStatename] = useState();
   const [pin, setPin] = useState();
+  const { token } = useContext(LoginContext);
   return (
     <div>
       <h3 className="infohead">SHIPPING ADDRESS</h3>
       <div className="addressmain">
-        <div className="address">
-          <div>
-            <p>houseName</p>
-            <p>cityName</p>
-            <p>stateName</p>
-            <p>pin</p>
-          </div>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/1215/1215092.png"
-            alt="Delete"
-            width={15}
-          />
-        </div>
+        {address
+          ? address.map((obj) => (
+              <div className="address">
+                <div>
+                  <p>{obj.houseName}</p>
+                  <p>{obj.cityName}</p>
+                  <p>{obj.stateName}</p>
+                  <p>{obj.pin}</p>
+                </div>
+                <img
+                  style={{ cursor: "pointer" }}
+                  src="https://cdn-icons-png.flaticon.com/512/1215/1215092.png"
+                  alt="Delete"
+                  width={15}
+                />
+              </div>
+            ))
+          : ""}
         <div
           className="address ad"
           onClick={() => {
@@ -89,7 +100,28 @@ function Address() {
         <button
           className="addressb"
           onClick={() => {
-            setAddcss("removeaddress");
+            axios
+              .post(
+                `https://e1commerce.herokuapp.com/api/addaddress/${token[0]}/`,
+                {
+                  houseName: housename,
+                  cityName: cityname,
+                  stateName: statename,
+                  pin: pin,
+                },
+                {
+                  headers: {
+                    Authorization: `Bearer ${token[1]}`,
+                  },
+                }
+              )
+              .then((Response) => {
+                alert("Address added");
+                setAddcss("removeaddress");
+              })
+              .catch((error) => {
+                alert(error.data);
+              });
           }}
         >
           Add Address

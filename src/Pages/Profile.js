@@ -19,8 +19,7 @@ function Profile() {
       .catch((error) => {
         alert(error.data);
       });
-  }, []);
-
+  }, [token]);
   console.log(data);
   return (
     <div>
@@ -45,7 +44,7 @@ function Profile() {
           <p
             className="y"
             onClick={() => {
-              navigate("address", { state: { address: data.address } });
+              navigate("address", { state: { address: data.addresses } });
             }}
           >
             Address
