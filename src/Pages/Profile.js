@@ -19,7 +19,9 @@ function Profile() {
       .catch((error) => {
         alert(error.data);
       });
-  });
+  }, []);
+
+  console.log(data);
   return (
     <div>
       <h3 className="acc">MY ACCOUNT</h3>
@@ -30,7 +32,7 @@ function Profile() {
             onClick={() => {
               navigate("personal", {
                 state: {
-                  username: data.username,
+                  username: data.user.username,
                   name: data.name,
                   age: data.age,
                   email: data.email,
