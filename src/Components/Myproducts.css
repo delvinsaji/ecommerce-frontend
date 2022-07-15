@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  gap: 90px;
+  gap: 80px;
   padding: 20px 10px;
 }
 
@@ -11,7 +11,7 @@
 }
 
 .item1 p {
-  font-size: 25px;
+  font-size: 15px;
 }
 
 .item1:hover {

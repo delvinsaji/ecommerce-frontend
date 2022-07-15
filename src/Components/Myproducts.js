@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, startTransition } from "react";
 import "./Myproducts.css";
+import { LoginContext } from "../context";
+import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 function Productform(props) {
   const [name, setName] = useState();
@@ -112,26 +115,35 @@ function Productform(props) {
 }
 
 function Myproducts() {
+  const { state } = useLocation();
+
+  const { products } = state;
+  const { token } = useContext(LoginContext);
   const [sts, setSts] = useState(false);
   return (
     <div>
       <h3 className="infohead">MY PRODUCTS</h3>
-      <div
-        onClick={() => {
-          setSts(true);
-        }}
-        className="item1"
-      >
-        <img src="a" alt="Product"></img>
-        <p className="it">Name</p>
-        <p>Price</p>
-        <p>Quantity</p>
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/1215/1215092.png"
-          alt="Delete"
-          width={15}
-        />
-      </div>
+      {products
+        ? products.map((obj) => (
+            <div
+              onClick={() => {
+                setSts(true);
+              }}
+              className="item1"
+            >
+              <img src={obj.image} width={60} alt="Product"></img>
+              <p className="it">{obj.name}</p>
+              <p>{obj.price}</p>
+              <p>Quantity</p>
+              <img
+                style={{ marginRight: "20px" }}
+                src={"https://cdn-icons-png.flaticon.com/512/1215/1215092.png"}
+                alt="Delete"
+                width={15}
+              />
+            </div>
+          ))
+        : ""}
       {sts ? (
         <Productform
           purpose={"UPDATE"}
