@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, startTransition } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Myproducts.css";
 import { LoginContext } from "../context";
 import axios from "axios";
@@ -10,7 +10,9 @@ function Productform(props) {
   const [desc, setDesc] = useState();
   const [image, setImage] = useState();
   const [category, setCategory] = useState();
-  const [status, setStatus] = useState();
+  const [status, setStatus] = useState("In Stock");
+  const [id, setId] = useState();
+  const { token } = useContext(LoginContext);
 
   useEffect(() => {
     if (props.details !== "") {
@@ -20,6 +22,7 @@ function Productform(props) {
       setImage(props.details[3]);
       setStatus(props.details[4]);
       setCategory(props.details[5]);
+      setId(props.details[6]);
     }
   }, [props.details]);
 
@@ -83,7 +86,7 @@ function Productform(props) {
                   setStatus(e.target.value);
                 }}
               >
-                <option value="Available">Available</option>
+                <option value="In Stock">Available</option>
                 <option value="Not In Stock">Not In Stock</option>
               </select>
             </div>
@@ -96,6 +99,8 @@ function Productform(props) {
                 }}
               >
                 <option value="Smartphone">Smartphone</option>
+                <option value="Tablet">Tablet</option>
+                <option value="Laptop">Laptop </option>
               </select>
             </div>
           </div>
@@ -104,7 +109,57 @@ function Productform(props) {
       <button
         onClick={() => {
           if (props.purpose === "UPDATE") {
+            console.log(name, category, price, desc, status, image);
+            axios
+              .post(
+                `https://e1commerce.herokuapp.com/api/updateproduct/${id}/`,
+                {
+                  username: token[0],
+                  category: category,
+                  name: name,
+                  price: price,
+                  description: desc,
+                  status: status,
+                  image: image,
+                },
+                {
+                  headers: {
+                    Authorization: `Bearer ${token[1]}`,
+                  },
+                }
+              )
+              .then((Response) => {
+                alert("Product updated");
+              })
+              .catch((error) => {
+                alert(error.data);
+              });
             props.status(false);
+          } else {
+            axios
+              .post(
+                `https://e1commerce.herokuapp.com/api/addproduct/`,
+                {
+                  username: token[0],
+                  category: category,
+                  name: name,
+                  price: price,
+                  description: desc,
+                  status: status,
+                  image: image,
+                },
+                {
+                  headers: {
+                    Authorization: `Bearer ${token[1]}`,
+                  },
+                }
+              )
+              .then((Response) => {
+                alert(Response.data);
+              })
+              .catch((error) => {
+                alert(error.data);
+              });
           }
         }}
       >
@@ -116,38 +171,51 @@ function Productform(props) {
 
 function Myproducts() {
   const { state } = useLocation();
-
+  const [current, setCurrent] = useState([]);
   const { products } = state;
-  const { token } = useContext(LoginContext);
+
   const [sts, setSts] = useState(false);
   return (
     <div>
       <h3 className="infohead">MY PRODUCTS</h3>
       {products
         ? products.map((obj) => (
-            <div
-              onClick={() => {
-                setSts(true);
-              }}
-              className="item1"
-            >
-              <img src={obj.image} width={60} alt="Product"></img>
-              <p className="it">{obj.name}</p>
-              <p>{obj.price}</p>
-              <p>Quantity</p>
-              <img
-                style={{ marginRight: "20px" }}
-                src={"https://cdn-icons-png.flaticon.com/512/1215/1215092.png"}
-                alt="Delete"
-                width={15}
-              />
+            <div>
+              <div
+                onClick={() => {
+                  setCurrent([
+                    obj.name,
+                    obj.price,
+                    obj.desciption,
+                    obj.image,
+                    obj.status,
+                    obj.category,
+                    obj.id,
+                  ]);
+                  setSts(true);
+                }}
+                className="item1"
+              >
+                <img src={obj.image} width={60} alt="Product"></img>
+                <p className="it">{obj.name}</p>
+                <p>{obj.price}</p>
+                <p>Quantity</p>
+                <img
+                  style={{ marginRight: "20px" }}
+                  src={
+                    "https://cdn-icons-png.flaticon.com/512/1215/1215092.png"
+                  }
+                  alt="Delete"
+                  width={15}
+                />
+              </div>
             </div>
           ))
         : ""}
       {sts ? (
         <Productform
           purpose={"UPDATE"}
-          details={["name", "price", "desc", "image", "status", "category"]}
+          details={current}
           status={setSts}
         ></Productform>
       ) : (
