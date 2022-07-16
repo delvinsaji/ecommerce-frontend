@@ -1,9 +1,10 @@
 .item2 {
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 40px;
   justify-content: flex-start;
   font-size: 25px;
   margin-top: 30px;
   margin-left: 15px;
+  font-size: 20px;
 }
