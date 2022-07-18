@@ -31,6 +31,24 @@ function Address() {
                   src="https://cdn-icons-png.flaticon.com/512/1215/1215092.png"
                   alt="Delete"
                   width={15}
+                  onClick={() => {
+                    axios
+                      .post(
+                        `https://e1commerce.herokuapp.com/api/deleteaddress/${obj.id}/`,
+                        {},
+                        {
+                          headers: {
+                            Authorization: `Bearer ${token[1]}`,
+                          },
+                        }
+                      )
+                      .then((Response) => {
+                        console.log(Response.data);
+                      })
+                      .catch((error) => {
+                        alert(error.data);
+                      });
+                  }}
                 />
               </div>
             ))

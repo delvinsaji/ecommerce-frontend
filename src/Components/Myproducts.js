@@ -173,7 +173,7 @@ function Myproducts() {
   const { state } = useLocation();
   const [current, setCurrent] = useState([]);
   const { products } = state;
-
+  const { token } = useContext(LoginContext);
   const [sts, setSts] = useState(false);
   return (
     <div>
@@ -207,6 +207,18 @@ function Myproducts() {
                   }
                   alt="Delete"
                   width={15}
+                  onClick={() => {
+                    axios
+                      .get(
+                        `https://e1commerce.herokuapp.com/api/deleteproduct/${obj.id}/`,
+                        {
+                          headers: { Authorization: `Bearer ${token[1]}` },
+                        }
+                      )
+                      .catch((error) => {
+                        alert(error.data);
+                      });
+                  }}
                 />
               </div>
             </div>
