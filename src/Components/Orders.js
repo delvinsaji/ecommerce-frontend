@@ -1,13 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./Orders.css";
 import { useLocation } from "react-router-dom";
-import { LoginContext } from "../context";
 
 function Orders() {
-  const { token } = useContext(LoginContext);
   const { state } = useLocation();
   const { orders } = state;
-  console.log(orders);
   return (
     <div>
       <h3 className="infohead">ORDERS</h3>

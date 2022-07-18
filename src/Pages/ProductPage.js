@@ -117,13 +117,16 @@ function ProductPage() {
                       }
                     )
                     .then((Response) => {
-                      console.log(Response.data);
+                      if (Response.data === "The item is already in cart") {
+                        alert("The item is already in cart");
+                      } else {
+                        navigate("/cart");
+                      }
                     })
                     .catch((error) => {
                       alert(error.data);
                     });
                 }
-                navigate("/cart");
               }}
             >
               {" "}
