@@ -41,6 +41,8 @@ function Login() {
             })
             .then((Response) => {
               setToken([username, Response.data.access]);
+              window.sessionStorage.setItem("username", username);
+              window.sessionStorage.setItem("token", Response.data.access);
               navigate("/");
             })
             .catch((error) => {

@@ -14,10 +14,23 @@ import Orders from "./Components/Orders";
 import Search from "./Pages/Search";
 import Analytics from "./Components/Analytics";
 import { LoginContext } from "./context";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function App() {
   const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const i = ["", ""];
+    if (window.sessionStorage.getItem("username") !== null) {
+      i[0] = window.sessionStorage.getItem("username");
+      i[1] = window.sessionStorage.getItem("token");
+      setToken(i);
+    } else {
+      setToken("");
+    }
+  }, []);
+
+  console.log(token);
   return (
     <LoginContext.Provider value={{ token, setToken }}>
       <div>

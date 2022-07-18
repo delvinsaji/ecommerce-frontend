@@ -7,7 +7,7 @@ function Header() {
   const navigate = useNavigate();
   const { token } = useContext(LoginContext);
   const [search, setSearch] = useState();
-
+  console.log(token);
   return (
     <div className="header">
       <div className="header1">
