@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Search.css";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 function Search(props) {
-  const navigate = useNavigate();
   const params = useParams();
   const id = params.id;
   const [page, setPage] = useState(1);
@@ -35,6 +34,7 @@ function Search(props) {
         </h6>
         <div className="sort">
           <p>Sort: </p>
+
           <select
             onChange={(e) => {
               let x = e.target.value;
@@ -57,17 +57,14 @@ function Search(props) {
       <div className="searchmain">
         {data
           ? data.map((obj) => (
-              <div
-                onClick={() => {
-                  navigate(`product/${obj.id}/`);
-                }}
-                className="row_element"
-              >
-                <img src={obj.image} height={150} alt="Product" />
-                <p>{obj.name}</p>
-                <p style={{ fontSize: "10px", marginTop: "5px" }}>
-                  Rs.{obj.price}
-                </p>
+              <div className="row_element">
+                <Link to={`/product/${obj.id}/`}>
+                  <img src={obj.image} height={150} alt="Product" />
+                  <p>{obj.name}</p>
+                  <p style={{ fontSize: "10px", marginTop: "5px" }}>
+                    Rs.{obj.price}
+                  </p>
+                </Link>
               </div>
             ))
           : ""}
