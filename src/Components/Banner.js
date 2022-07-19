@@ -33,28 +33,31 @@ function Banner() {
       >
         {"<"}
       </p>
-      <img
-        onClick={() => {
-          navigate(`product/${data[0].id}/`);
-        }}
-        src={data ? data[count].image : ""}
-        alt="Product Pic"
-      />
-      <div className="details">
-        <h4
+      <div className="bannermain">
+        <img
           onClick={() => {
             navigate(`product/${data[0].id}/`);
           }}
-        >
-          {data ? data[count].name : ""}
-        </h4>
-        <h6
-          onClick={() => {
-            navigate(`product/${data[0].id}/`);
-          }}
-        >
-          Rs{data ? data[count].price : ""}
-        </h6>
+          src={data ? data[count].image : ""}
+          alt="Product Pic"
+          width={150}
+        />
+        <div className="details">
+          <h4
+            onClick={() => {
+              navigate(`product/${data[0].id}/`);
+            }}
+          >
+            {data ? data[count].name : ""}
+          </h4>
+          <h6
+            onClick={() => {
+              navigate(`product/${data[0].id}/`);
+            }}
+          >
+            Rs{data ? data[count].price : ""}
+          </h6>
+        </div>
       </div>
       <p
         className="mover"

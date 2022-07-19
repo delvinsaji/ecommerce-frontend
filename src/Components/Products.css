@@ -10,6 +10,9 @@
   font-size: 12px;
 }
 
+.row_element {
+  width: 20%;
+}
 .paginator {
   padding-top: 20px;
   display: flex;
